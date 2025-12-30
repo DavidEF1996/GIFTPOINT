@@ -18,6 +18,7 @@ function login(req, res) {
   }
 
   res.json(result);
+  console.log("llegando")
 }
 
 module.exports = {
