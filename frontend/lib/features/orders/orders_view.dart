@@ -65,16 +65,20 @@ class OrdersView extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
+                              color: Colors.black,
                             ),
                           ),
                           const SizedBox(height: 4),
-                          Text('${giftcard['amount']} ${giftcard['currency']}'),
+                          Text(
+                            '${giftcard['amount']} ${giftcard['currency']}',
+                            style: TextStyle(color: Colors.black),
+                          ),
                           const SizedBox(height: 4),
                           Text(
                             'Estado: ${order['status']}',
                             style: const TextStyle(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: Colors.black,
                             ),
                           ),
                         ],

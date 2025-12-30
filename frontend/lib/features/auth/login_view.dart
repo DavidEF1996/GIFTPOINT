@@ -32,44 +32,71 @@ class _LoginViewState extends State<LoginView> {
           padding: const EdgeInsets.all(24),
           child: Consumer<AuthViewModel>(
             builder: (_, vm, __) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextField(
-                    controller: emailCtrl,
-                    decoration: const InputDecoration(labelText: 'Email'),
+              return Center(
+                child: SizedBox(
+                  height: 300,
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.08),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextField(
+                          controller: emailCtrl,
+
+                          decoration: const InputDecoration(labelText: 'Email'),
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextField(
+                          controller: passCtrl,
+                          style: TextStyle(color: Colors.black),
+                          decoration: const InputDecoration(
+                            labelText: 'Password',
+                          ),
+                          obscureText: true,
+                        ),
+                        const SizedBox(height: 20),
+
+                        if (vm.isLoading) const CircularProgressIndicator(),
+
+                        if (vm.error != null)
+                          Text(
+                            vm.error!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+
+                        ElevatedButton(
+                          onPressed: vm.isLoading
+                              ? null
+                              : () async {
+                                  await vm.login(emailCtrl.text, passCtrl.text);
+
+                                  if (vm.token != null && context.mounted) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            GiftcardsView(token: vm.token!),
+                                      ),
+                                    );
+                                  }
+                                },
+                          child: const Text('Login'),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextField(
-                    controller: passCtrl,
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 20),
-
-                  if (vm.isLoading) const CircularProgressIndicator(),
-
-                  if (vm.error != null)
-                    Text(vm.error!, style: const TextStyle(color: Colors.red)),
-
-                  ElevatedButton(
-                    onPressed: vm.isLoading
-                        ? null
-                        : () async {
-                            await vm.login(emailCtrl.text, passCtrl.text);
-
-                            if (vm.token != null && context.mounted) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) =>
-                                      GiftcardsView(token: vm.token!),
-                                ),
-                              );
-                            }
-                          },
-                    child: const Text('Login'),
-                  ),
-                ],
+                ),
               );
             },
           ),

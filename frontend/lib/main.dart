@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/core/theme.dart';
 import 'package:frontend/features/auth/auth_viewmodel.dart';
 import 'package:frontend/features/auth/login_view.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: AppTheme().getTheme(),
       home: LoginView(),
     );
   }

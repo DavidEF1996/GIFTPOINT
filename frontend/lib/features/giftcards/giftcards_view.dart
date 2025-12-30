@@ -18,14 +18,20 @@ class GiftcardsView extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Giftcards'),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.receipt_long),
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => OrdersView(token: token)),
                 );
               },
+              child: Row(
+                children: [
+                  SizedBox(child: Row(children: [Text("Mis Compras")])),
+                  SizedBox(width: 10),
+                  Icon(Icons.receipt_long, color: Colors.white),
+                ],
+              ),
             ),
           ],
         ),
