@@ -4,6 +4,7 @@ const path = require('path');
 
 const authRoutes = require('./routes/auth.routes');
 const giftcardsRoutes = require('./routes/giftcards.routes');
+const ordersRoutes = require('./routes/orders.routes');
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(
 
 app.use('/auth', authRoutes);
 app.use('/giftcards', giftcardsRoutes);
+app.use('/orders', ordersRoutes);
 
 module.exports = app;

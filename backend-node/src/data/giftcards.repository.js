@@ -13,7 +13,7 @@ const giftcards = [
     amount: 25,
     currency: 'USD',
     available: true,
-       logoUrl:'/assets/netflix.png'
+    logoUrl:'/assets/netflix.png'
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const giftcards = [
     amount: 100,
     currency: 'USD',
     available: false,
-       logoUrl:'/assets/steam.png'
+    logoUrl:'/assets/steam.png'
   }
 ];
 
@@ -29,6 +29,12 @@ function findAllAvailable() {
   return giftcards.filter(g => g.available);
 }
 
+function findById(id) {
+  return giftcards.find(g => g.id === id);
+}
+
+
 module.exports = {
-  findAllAvailable
+  findAllAvailable,
+  findById
 };
