@@ -17,7 +17,7 @@ function login(email, password) {
   };
 
   const token = jwt.sign(payload, jwtSecret, {
-    expiresIn: '1h'
+    expiresIn: '5m'
   });
 
   return {
