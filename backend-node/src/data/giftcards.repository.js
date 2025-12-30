@@ -30,7 +30,7 @@ function findAllAvailable() {
 }
 
 function findById(id) {
-  return giftcards.find(g => g.id === id);
+  return giftcards.find(g => g.id == id);
 }
 
 

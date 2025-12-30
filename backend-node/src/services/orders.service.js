@@ -4,6 +4,7 @@ const ordersRepository = require('../data/orders.repository');
 function createOrder({ userId, giftcardId }) {
   const giftcard = giftcardsRepository.findById(giftcardId);
 
+  console.log("llegando",giftcardId)
   if (!giftcard) {
     throw new Error('NO SE ENCONTRO GIFTCARD');
   }
@@ -11,7 +12,7 @@ function createOrder({ userId, giftcardId }) {
   if (!giftcard.available) {
     throw new Error('NO ESTA EN STOCK GIFTCARD');
   }
-
+  console.log("llegando2")
   const order = ordersRepository.save({
     userId,
     giftcardId,

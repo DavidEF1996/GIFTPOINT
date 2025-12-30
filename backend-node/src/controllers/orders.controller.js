@@ -2,6 +2,7 @@ const ordersService = require('../services/orders.service');
 
 function createOrder(req, res) {
   const { giftcardId } = req.body;
+  console.log("llego al crear orden", req.body)
 
   if (!giftcardId) {
     return res.status(400).json({
@@ -14,7 +15,7 @@ function createOrder(req, res) {
       userId: req.user.sub,
       giftcardId
     });
-
+console.log("llego al crear orden", req.user.sub)
     res.status(201).json({
       orderId: order.id,
       status: order.status
@@ -29,6 +30,7 @@ function createOrder(req, res) {
     }
 
     res.status(500).json({ message: 'INTENTELO DE NUEVO MAS TARDE' });
+    console.log("error", error.message)
   }
 }
 

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:frontend/features/auth/auth_viewmodel.dart';
 import 'package:frontend/features/auth/login_view.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => AuthViewModel(),

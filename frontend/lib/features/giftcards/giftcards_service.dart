@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'giftcard_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GiftcardsService {
-  static const String baseUrl = 'http://192.168.18.95:3000';
+  static String get baseUrl => dotenv.env['BASE_URL']!;
 
   Future<List<Giftcard>> fetchGiftcards(String token) async {
     final response = await http.get(
